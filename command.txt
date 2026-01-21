@@ -1,0 +1,2 @@
+# Command in order to Up Sonarqube
+docker compose up

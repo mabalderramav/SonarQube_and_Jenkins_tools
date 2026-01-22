@@ -1,2 +1,5 @@
 # Command in order to Up Sonarqube
 docker compose up
+
+# Command in order to down Sonarqube
+docker compose down

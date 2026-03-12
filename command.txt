@@ -3,3 +3,9 @@ docker compose -f ./sonarqube/docker-compose.yaml up
 
 # Command in order to down Sonarqube
 docker compose -f ./sonarqube/docker-compose.yaml down
+
+# Command in order to Up Jenkins
+docker compose -f ./jenkins/docker-compose.yaml up
+
+# Command in order to down Jenkins
+docker compose -f ./jenkins/docker-compose.yaml down

@@ -1,3 +1,5 @@
+# Create a network for the containers to communicate
+docker network create miasoftnanus-network
 # Command in order to Up Sonarqube
 docker compose -f ./sonarqube/docker-compose.yaml up
 
@@ -9,3 +11,10 @@ docker compose -f ./jenkins/docker-compose.yaml up
 
 # Command in order to down Jenkins
 docker compose -f ./jenkins/docker-compose.yaml down
+
+# Test Jenkins can reach SonarQube
+docker exec jenkins curl -I http://sonarqube:9000
+
+# Configure SonarQube in Jenkins
+## In Jenkins, use the container name as hostname when configuring the SonarQube server:
+http://sonarqube:9000

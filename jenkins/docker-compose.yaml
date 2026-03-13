@@ -12,11 +12,11 @@ services:
       - JENKINS_OPTS=--httpPort=8080
     restart: unless-stopped
     networks:
-      - jenkins-network
+      - miasoftnanus-network
 
 volumes:
   jenkins_home:
 
 networks:
-  jenkins-network:
-    driver: bridge
+  miasoftnanus-network:
+    external: true

@@ -18,3 +18,8 @@ docker exec jenkins curl -I http://sonarqube:9000
 # Configure SonarQube in Jenkins
 ## In Jenkins, use the container name as hostname when configuring the SonarQube server:
 http://sonarqube:9000
+
+# Command in order to Up MSSQL Server
+docker compose -f ./mssql-server/docker-compose.yaml up
+# Command in order to down MSSQL Server
+docker compose -f ./mssql-server/docker-compose.yaml down

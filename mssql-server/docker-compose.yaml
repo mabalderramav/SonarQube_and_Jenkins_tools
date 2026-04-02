@@ -1,0 +1,20 @@
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2025-latest
+    container_name: sqlserver2025
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "1"
+      MSSQL_SA_PASSWORD: "MyStrongPass123"
+      MSSQL_PID: "Developer"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+    networks:
+      - miasoftnanus-network
+volumes:
+  sqlserverdata:
+
+networks:
+  miasoftnanus-network:
+    external: true

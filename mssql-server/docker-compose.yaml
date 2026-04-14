@@ -9,11 +9,11 @@ services:
       MSSQL_SA_PASSWORD: "$Aldo123$5"
       MSSQL_PID: "Developer"
     volumes:
-      - sqlserverdata:/var/opt/mssql
+      - sqlserver_data:/var/opt/mssql
     networks:
       - miasoftnanus-network
 volumes:
-  sqlserverdata:
+  sqlserver_data:
 
 networks:
   miasoftnanus-network:

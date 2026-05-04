@@ -1,0 +1,27 @@
+services:
+  jenkins-agent:
+    image: jenkins/inbound-agent:latest-jdk17
+    container_name: ${JENKINS_AGENT_CONTAINER_NAME:-jenkins-agent-01}
+    restart: unless-stopped
+    environment:
+      JENKINS_URL: ${JENKINS_URL:-http://jenkins:8080}
+      JENKINS_WEB_SOCKET: ${JENKINS_WEB_SOCKET:-true}
+      JENKINS_AGENT_WORKDIR: /home/jenkins/agent
+      JENKINS_SECRET: ${JENKINS_SECRET:?Set JENKINS_SECRET in your .env file}
+      JENKINS_AGENT_NAME: ${JENKINS_AGENT_NAME:-docker-agent-01}
+    command:
+      - ${JENKINS_SECRET}
+      - ${JENKINS_AGENT_NAME:-docker-agent-01}
+    volumes:
+      - agent_workdir:/home/jenkins/agent
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - jenkins-controller-network
+
+volumes:
+  agent_workdir:
+
+networks:
+  jenkins-controller-network:
+    external: true
+    name: ${JENKINS_DOCKER_NETWORK:-jenkins-sonarqube-docker_jenkins-sonarqube-network}

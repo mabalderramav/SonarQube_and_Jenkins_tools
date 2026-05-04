@@ -1,0 +1,67 @@
+services:
+  jenkins-agent-01:
+    image: jenkins/inbound-agent:latest-jdk17
+    container_name: ${JENKINS_AGENT_01_CONTAINER_NAME:-jenkins-agent-01}
+    restart: unless-stopped
+    environment:
+      JENKINS_URL: ${JENKINS_URL:-http://jenkins:8080}
+      JENKINS_WEB_SOCKET: ${JENKINS_WEB_SOCKET:-true}
+      JENKINS_AGENT_WORKDIR: /home/jenkins/agent
+      JENKINS_SECRET: ${JENKINS_AGENT_01_SECRET:?Set JENKINS_AGENT_01_SECRET in your .env file}
+      JENKINS_AGENT_NAME: ${JENKINS_AGENT_01_NAME:-docker-agent-01}
+    command:
+      - ${JENKINS_AGENT_01_SECRET}
+      - ${JENKINS_AGENT_01_NAME:-docker-agent-01}
+    volumes:
+      - agent_01_workdir:/home/jenkins/agent
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - jenkins-controller-network
+
+  jenkins-agent-02:
+    image: jenkins/inbound-agent:latest-jdk17
+    container_name: ${JENKINS_AGENT_02_CONTAINER_NAME:-jenkins-agent-02}
+    restart: unless-stopped
+    environment:
+      JENKINS_URL: ${JENKINS_URL:-http://jenkins:8080}
+      JENKINS_WEB_SOCKET: ${JENKINS_WEB_SOCKET:-true}
+      JENKINS_AGENT_WORKDIR: /home/jenkins/agent
+      JENKINS_SECRET: ${JENKINS_AGENT_02_SECRET:?Set JENKINS_AGENT_02_SECRET in your .env file}
+      JENKINS_AGENT_NAME: ${JENKINS_AGENT_02_NAME:-docker-agent-02}
+    command:
+      - ${JENKINS_AGENT_02_SECRET}
+      - ${JENKINS_AGENT_02_NAME:-docker-agent-02}
+    volumes:
+      - agent_02_workdir:/home/jenkins/agent
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - jenkins-controller-network
+
+  jenkins-agent-03:
+    image: jenkins/inbound-agent:latest-jdk17
+    container_name: ${JENKINS_AGENT_03_CONTAINER_NAME:-jenkins-agent-03}
+    restart: unless-stopped
+    environment:
+      JENKINS_URL: ${JENKINS_URL:-http://jenkins:8080}
+      JENKINS_WEB_SOCKET: ${JENKINS_WEB_SOCKET:-true}
+      JENKINS_AGENT_WORKDIR: /home/jenkins/agent
+      JENKINS_SECRET: ${JENKINS_AGENT_03_SECRET:?Set JENKINS_AGENT_03_SECRET in your .env file}
+      JENKINS_AGENT_NAME: ${JENKINS_AGENT_03_NAME:-docker-agent-03}
+    command:
+      - ${JENKINS_AGENT_03_SECRET}
+      - ${JENKINS_AGENT_03_NAME:-docker-agent-03}
+    volumes:
+      - agent_03_workdir:/home/jenkins/agent
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - jenkins-controller-network
+
+volumes:
+  agent_01_workdir:
+  agent_02_workdir:
+  agent_03_workdir:
+
+networks:
+  jenkins-controller-network:
+    external: true
+    name: ${JENKINS_DOCKER_NETWORK:-jenkins-sonarqube-docker_jenkins-sonarqube-network}

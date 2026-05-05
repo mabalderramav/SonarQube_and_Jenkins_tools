@@ -1,6 +1,6 @@
 services:
   jenkins-agent:
-    image: jenkins/inbound-agent:latest-jdk17
+    image: jenkins/inbound-agent:latest-jdk21
     container_name: ${JENKINS_AGENT_CONTAINER_NAME:-jenkins-agent-01}
     restart: unless-stopped
     environment:

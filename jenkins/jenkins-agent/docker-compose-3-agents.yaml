@@ -1,6 +1,6 @@
 services:
   jenkins-agent-01:
-    image: jenkins/inbound-agent:latest-jdk17
+    image: jenkins/inbound-agent:latest-jdk21
     container_name: ${JENKINS_AGENT_01_CONTAINER_NAME:-jenkins-agent-01}
     restart: unless-stopped
     environment:
@@ -19,7 +19,7 @@ services:
       - jenkins-controller-network
 
   jenkins-agent-02:
-    image: jenkins/inbound-agent:latest-jdk17
+    image: jenkins/inbound-agent:latest-jdk21
     container_name: ${JENKINS_AGENT_02_CONTAINER_NAME:-jenkins-agent-02}
     restart: unless-stopped
     environment:
@@ -38,7 +38,7 @@ services:
       - jenkins-controller-network
 
   jenkins-agent-03:
-    image: jenkins/inbound-agent:latest-jdk17
+    image: jenkins/inbound-agent:latest-jdk21
     container_name: ${JENKINS_AGENT_03_CONTAINER_NAME:-jenkins-agent-03}
     restart: unless-stopped
     environment:

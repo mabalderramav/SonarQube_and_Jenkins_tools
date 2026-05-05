@@ -26,3 +26,27 @@ docker compose -f ./mssql-server/docker-compose.yaml up
 docker compose -f ./mssql-server/docker-compose.yaml up -d
 # Command in order to down MSSQL Server
 docker compose -f ./mssql-server/docker-compose.yaml down
+
+# command in order to check logs and status of the containers
+docker compose -f ./sonarqube/docker-compose.yaml logs -f
+docker compose -f ./jenkins/docker-compose.yaml logs -f
+docker compose -f ./mssql-server/docker-compose.yaml logs -f
+
+# command in order to check the status of the containers
+docker compose -f ./sonarqube/docker-compose.yaml ps
+docker compose -f ./jenkins/docker-compose.yaml ps
+docker compose -f ./mssql-server/docker-compose.yaml ps
+
+docker compose -f ./sonarqube/docker-compose.yaml status
+docker compose -f ./jenkins/docker-compose.yaml status
+docker compose -f ./mssql-server/docker-compose.yaml status
+
+docker compose -f ./sonarqube/docker-compose.yaml stop
+docker compose -f ./sonarqube/docker-compose.yaml start
+docker compose -f ./jenkins/docker-compose.yaml stop
+docker compose -f ./jenkins/docker-compose.yaml start
+docker compose -f ./mssql-server/docker-compose.yaml stop
+docker compose -f ./mssql-server/docker-compose.yaml start
+
+# command in order to Up Jenkins Agents
+docker compose -f jenkins/jenkins-agent/docker-compose-3-agents.yaml --env-file jenkins/jenkins-agent/.env up -d

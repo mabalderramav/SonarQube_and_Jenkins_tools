@@ -50,3 +50,6 @@ docker compose -f ./mssql-server/docker-compose.yaml start
 
 # command in order to Up Jenkins Agents
 docker compose -f jenkins/jenkins-agent/docker-compose-3-agents.yaml --env-file jenkins/jenkins-agent/.env up -d
+docker compose -f jenkins/jenkins-agent/docker-compose-3-agents.yaml stop
+docker compose -f jenkins/jenkins-agent/docker-compose-3-agents.yaml start
+docker compose -f jenkins/jenkins-agent/docker-compose-3-agents.yaml down
